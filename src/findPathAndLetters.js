@@ -1,5 +1,4 @@
-function findPathAndLetters() {
-    const { matrix } = require('./constants');
+function findPathAndLetters(matrix) {
     const { getStartAndValidateCharacters } = require('./initialValidation');
     const { findNextOrientation, getNextCharacterPosition } = require("./finderLogic");
     const { startPosition } = getStartAndValidateCharacters(matrix);
@@ -11,10 +10,6 @@ function findPathAndLetters() {
     let letters = '';
 
     path += matrix[row][col];
-
-    for (let i =0; i< matrix.length; i++) {
-        console.log(matrix[i]);
-    }
 
     let usedLetterAt = [{}];
     do {
@@ -36,7 +31,5 @@ function findPathAndLetters() {
 
     return { letters, path };
 };
-const { letters, path } = findPathAndLetters();
-console.log(`\n`);
-console.log('letters:', letters);
-console.log('path:', path);
+
+module.exports = { findPathAndLetters };
