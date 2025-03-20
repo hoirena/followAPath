@@ -1,6 +1,6 @@
 const { findPathAndLetters } = require('./findPathAndLetters');
 
-describe('Acceptance Tests - should return correct letters and path for a given matrix', () => {
+describe('Should return correct letters and path for a given matrix', () => {
     test('Example: A basic', () => {
         const matrix = [
                 "@---A---+",
@@ -89,7 +89,7 @@ describe('Acceptance Tests - should return correct letters and path for a given 
     });
 });
 
-describe('Validation Tests - should throw error for invalid maps with appropriate message', () => {
+describe('Should throw error for invalid maps with appropriate message', () => {
     test('Example: Fork in path', () => {
         const matrix = [
             "      x-B",

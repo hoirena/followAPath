@@ -44,7 +44,7 @@ function getOrientedNeighbours(row, col, orientation, matrix) {
     } else throw new Error('Broken path');
 };
 
-function checkTurn(orientation, neighbours) {
+function getOrientationForTurn(orientation, neighbours) {
     let newOrientationFound = null;
     if (neighbours.left !== ' ' && neighbours.left) {
         switch (orientation) {
@@ -126,7 +126,7 @@ function findNextOrientation(row, col, previousOrientation, matrix) {
         switch (currentCharacter) {
             case '+': {
 
-                return checkTurn(orientation, neighbours);
+                return getOrientationForTurn(orientation, neighbours);
             }
             case '-':
             case '|': {
@@ -142,7 +142,7 @@ function findNextOrientation(row, col, previousOrientation, matrix) {
                     return orientation;
                 }
 
-                return checkTurn(orientation, neighbours);
+                return getOrientationForTurn(orientation, neighbours);
             }
             default: {
                 throw new Error('Error in finding next orientation.');
@@ -177,4 +177,9 @@ function getNextCharacterPosition(currentRow, currentCol, orientation) {
     return { nextRow, nextCol };
 }
 
-module.exports = { findNextOrientation, getNextCharacterPosition };
+module.exports = {
+  findNextOrientation,
+  getNextCharacterPosition,
+  getOrientedNeighbours,
+  getOrientationForTurn,
+};
