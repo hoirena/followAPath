@@ -1,7 +1,7 @@
-const { findPathAndLetters } = require('./findPathAndLetters');
+const { findPathAndLetters } = require('./index');
 
 describe('Should return correct letters and path for a given matrix', () => {
-    test('Example: A basic', () => {
+    test('A basic example', () => {
         const matrix = [
                 "@---A---+",
                 "        |",
@@ -90,7 +90,7 @@ describe('Should return correct letters and path for a given matrix', () => {
 });
 
 describe('Should throw error for invalid maps with appropriate message', () => {
-    test('Example: Fork in path', () => {
+    test('Error message: Fork in path', () => {
         const matrix = [
             "      x-B",
             "        |",
@@ -103,7 +103,7 @@ describe('Should throw error for invalid maps with appropriate message', () => {
     
         expect(() => findPathAndLetters(matrix)).toThrow('Fork in path');
     });
-    test('Example: Broken path', () => {
+    test('Error message: Broken path', () => {
         const matrix = [
             "@--A-+",
             "     |",
@@ -113,14 +113,14 @@ describe('Should throw error for invalid maps with appropriate message', () => {
         
         expect(() => findPathAndLetters(matrix)).toThrow('Broken path');
     });
-    test('Example: Multiple starting paths', () => {
+    test('Error message: Multiple starting paths', () => {
         const matrix = [
             "x-B-@-A-x"
         ];
         
         expect(() => findPathAndLetters(matrix)).toThrow('Multiple starting paths');
     });
-    test('Example: Fake turn', () => {
+    test('Error message: Fake turn', () => {
         const matrix = [
             "@-A-+-B-x"
         ];

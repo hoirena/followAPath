@@ -1,7 +1,7 @@
 const { getStartAndValidateCharacters } = require('./initialValidation');
 
-describe('Validation Tests - should throw error for invalid maps with appropriate message', () => {
-    test('Example: Missing start character', () => {
+describe('Should throw error for invalid maps with appropriate message', () => {
+    test('Error message: Missing start character', () => {
         const matrix = [
             "   -A---+",
             "        |",
@@ -12,7 +12,7 @@ describe('Validation Tests - should throw error for invalid maps with appropriat
 
         expect(() => getStartAndValidateCharacters(matrix)).toThrow('Missing start character');
     });
-    test('Example: Missing end character', () => {
+    test('Error message: Missing end character', () => {
         const matrix = [
             "@--A---+",
             "       |",
@@ -23,7 +23,7 @@ describe('Validation Tests - should throw error for invalid maps with appropriat
 
         expect(() => getStartAndValidateCharacters(matrix)).toThrow('Missing end character');
     });
-    test('Example: Multiple starts', () => {
+    test('Error message: Multiple starts', () => {
         const matrix = [
             " @--A-@-+",
             "        |",
@@ -34,7 +34,7 @@ describe('Validation Tests - should throw error for invalid maps with appropriat
 
         expect(() => getStartAndValidateCharacters(matrix)).toThrow('Multiple starts');
     });
-    test("Example: Invalid '5' character", () => {
+    test('Error message: Invalid "5" character', () => {
         const matrix = [
             "@-A--+",
             "     |",
@@ -42,5 +42,20 @@ describe('Validation Tests - should throw error for invalid maps with appropriat
         ];
 
         expect(() => getStartAndValidateCharacters(matrix)).toThrow('Invalid character \'5\' found');
+    });
+});
+describe('Should return startPosition if matrix is valid', () => {
+    test('Returns correct start position', () => {
+        const matrix = [
+            "@",
+            "| +-C--+",
+            "A |    |",
+            "+---B--+",
+            "  |      x",
+            "  |      |",
+            "  +---D--+"
+        ];
+
+        expect(getStartAndValidateCharacters(matrix)).toEqual({ startPosition: { row: 0, col: 0 }});
     });
 });
