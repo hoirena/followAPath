@@ -1,6 +1,6 @@
 const { getStartAndValidateCharacters } = require('./initialValidation');
 const { findNextOrientation, getNextCharacterPosition } = require("./finderLogic");
-const { matrix } = require('./constantsForTesting');
+const allMatrix = require('./constantsForTesting');
 
 function findPathAndLetters(matrix) {
     const { startPosition } = getStartAndValidateCharacters(matrix);
@@ -34,8 +34,13 @@ function findPathAndLetters(matrix) {
     return { letters, path };
 };
 
-const { letters, path } = findPathAndLetters(matrix);
-console.log('letters:', letters);
-console.log('path:', path);
+for (const [key, matrix] of Object.entries(allMatrix)) {
+    const { letters, path } = findPathAndLetters(matrix);
+    console.log(`${key}:`);
+    console.log('letters:', letters);
+    console.log('path:', path);
+    console.log(`\n`);
+    if (key.includes('6')) break;
+}
 
 module.exports = { findPathAndLetters };

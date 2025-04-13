@@ -5,37 +5,20 @@ const {
     getOrientationForTurn,
 } = require("./finderLogic");
 
-const matrix = [
-    "    +-O-N-+",
-    "    |     |",
-    "    |   +-I-+",
-    "@-G-O-+ | | |",
-    "    | | +-+ E",
-    "    +-+     S",
-    "            |",
-    "            x",
-];
-
-const matrix2 = [
-    "@---A---+",
-    "        |",
-    "x-B-+   |",
-    "    |   |",
-    "    +---C",
-];
+const { matrix3, matrix4 } = require("./constantsForTesting");
 
 describe("Test individual functions: should return correct output for a given input", () => {
     test("findNextOrientation - should return correct start and end orientation", () => {
-        expect(findNextOrientation(3, 0, null, matrix)).toEqual("east");
-        expect(findNextOrientation(7, 12, "south", matrix)).toBeFalsy();
+        expect(findNextOrientation(3, 0, null, matrix4)).toEqual("east");
+        expect(findNextOrientation(7, 12, "south", matrix4)).toBeFalsy();
     });
     test("findNextOrientation - should return correct orientation for other cases", () => {
-        expect(findNextOrientation(3, 1, "west", matrix)).toEqual("west");
-        expect(findNextOrientation(3, 2, "west", matrix)).toEqual("west");
-        expect(findNextOrientation(3, 6, "west", matrix)).toEqual("south");
-        expect(findNextOrientation(4, 6, "south", matrix)).toEqual("south");
-        expect(findNextOrientation(2, 4, "north", matrix)).toEqual("north");
-        expect(findNextOrientation(4, 8, "south", matrix2)).toEqual("west");
+        expect(findNextOrientation(3, 1, "west", matrix4)).toEqual("west");
+        expect(findNextOrientation(3, 2, "west", matrix4)).toEqual("west");
+        expect(findNextOrientation(3, 6, "west", matrix4)).toEqual("south");
+        expect(findNextOrientation(4, 6, "south", matrix4)).toEqual("south");
+        expect(findNextOrientation(2, 4, "north", matrix4)).toEqual("north");
+        expect(findNextOrientation(4, 8, "south", matrix3)).toEqual("west");
     });
     test("getNextCharacterPosition - should return correct position for next character in matrix", () => {
         expect(getNextCharacterPosition(3, 0, "east")).toEqual({
@@ -56,33 +39,33 @@ describe("Test individual functions: should return correct output for a given in
         });
     });
     test("getOrientedNeighbours - should return neighbours based on current orientation", () => {
-        expect(getOrientedNeighbours(3, 0, null, matrix)).toEqual({
+        expect(getOrientedNeighbours(3, 0, null, matrix4)).toEqual({
             left: null,
             front: " ",
             right: "-",
             back: " "
         });
-        expect(getOrientedNeighbours(0, 5, 'east', matrix)).toEqual({
+        expect(getOrientedNeighbours(0, 5, 'east', matrix4)).toEqual({
             left: null,
             front: "O",
             right: " ",
         });
-        expect(getOrientedNeighbours(0, 10, 'east', matrix)).toEqual({
+        expect(getOrientedNeighbours(0, 10, 'east', matrix4)).toEqual({
             left: null,
             front: null,
             right: "|",
         });
-        expect(getOrientedNeighbours(2, 10, 'south', matrix)).toEqual({
+        expect(getOrientedNeighbours(2, 10, 'south', matrix4)).toEqual({
             left: "-",
             front: "|",
             right: "-",
         });
-        expect(getOrientedNeighbours(4, 9, 'west', matrix)).toEqual({
+        expect(getOrientedNeighbours(4, 9, 'west', matrix4)).toEqual({
             left: " ",
             front: "+",
             right: " ",
         });
-        expect(getOrientedNeighbours(3, 4, 'north', matrix)).toEqual({
+        expect(getOrientedNeighbours(3, 4, 'north', matrix4)).toEqual({
             left: "-",
             front: "|",
             right: "-",
